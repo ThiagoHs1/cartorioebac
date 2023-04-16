@@ -119,6 +119,8 @@ int main()
 	 	  printf("\t1- Registrar Nomes \n");
 	 	  printf("\t2- Consultar Nomes \n");
 	 	  printf("\t3- Deletar Nomes \n");
+		  printf("\t4- Sair do sistema \n");
+
 	 	  printf("Opção: ");
 	
 	 	  //Armazene o valor que foi digitado
@@ -129,12 +131,20 @@ int main()
 	 	 	case 1:
 	 	 	registro(); //Chamada de funçao 
 	  	   	break;
+	  	   	
 	  	   	case 2:
 		 	consulta();	 
 	  	   	break;
+	  	   	
 	  	   	case 3:
 	 	 	deletar();
 	  	   	break;
+	  	   	
+	  	   	case 4:
+	 	 	printf("Obrigado por utilizar o sistema! \n");
+	 	 	return 0;
+	  	   	break;
+	  	   	
 	  	   	default:
 	 	 	printf ("Esta opção não está disponivel\n");
 	 	 	system("pause");  
