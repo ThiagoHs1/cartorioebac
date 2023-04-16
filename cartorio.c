@@ -1,0 +1,144 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+
+int registro (){
+	//Inicio da criação de variavel
+	char arquivo[40];
+	char cpf[40]; 
+	char nome[40];
+	char sobrenome[40];
+	char cargo[40];
+	
+	printf ("Digite o CPF a ser cadastrado: "); //Coletando informação do Usuário
+	scanf("%s", cpf); //%s se refere a string
+	
+	strcpy(arquivo, cpf); //Responsável por copiar os valores das strings
+	
+	
+	FILE *file; //cria o arquivo
+	file = fopen(arquivo, "w");
+	fprintf(file,cpf); // salva o valor da variavel
+	fclose(file);  // fecha o arquivo
+	
+	file = fopen(arquivo, "a");
+	fprintf(file, "," );
+	fclose(file);
+	
+	//
+	
+	printf ("Digite o nome a ser cadastrado: ");
+	scanf("%s", nome);
+	file = fopen(arquivo, "a");
+	fprintf(file, nome );
+	fclose(file);
+	
+	file = fopen(arquivo, "a");
+	fprintf(file, "," );
+	fclose(file);
+	
+	
+	//
+	
+	printf ("Digite o sobrenome a ser cadastrado: ");
+	scanf("%s", sobrenome);
+	file = fopen(arquivo, "a");
+	fprintf(file, sobrenome );
+	fclose(file);
+	
+	
+	file = fopen(arquivo, "a");
+	fprintf(file, "," );
+	fclose(file);
+	
+	//
+	
+	printf ("Digite o cargo a ser cadastrado: ");
+	scanf("%s", cargo);
+	file = fopen(arquivo, "a");
+	fprintf(file, cargo );
+	fclose(file);
+	
+	system("pause");
+	
+}
+
+int consulta (){
+	setlocale(LC_ALL, "Portuguese"); //Linguagem
+	 
+	char cpf[40];
+	char conteudo[200];
+	
+	printf ("Digite o CPF a ser consultado: \n");
+	scanf("%s", cpf);
+	
+	FILE *file;
+	file = fopen(cpf,"r");
+	
+	if (file == NULL){
+		printf("Não foi possivel abrir o arquivo, não localizado! \n");
+		
+	}
+	
+	while(fgets(conteudo,200,file) != NULL ) {
+		printf("\nEssas são as informações do usuário: " );
+		printf("%s", conteudo);
+		printf ("\n\n");
+	}
+	system("pause"); 	
+}
+
+int deletar (){
+	char cpf[40];
+	printf ("Digite o CPF do usuario a ser consultado: ");
+	scanf("%s" ,cpf);
+	remove(cpf);
+	
+	FILE *file;
+	file = fopen(cpf, "r");
+	
+	if(file == NULL){
+		printf("O usuário não se encontra no sistema! \n");
+		system("pause"); 
+	}
+	
+	 
+}
+
+int main()
+{
+	int opcao = 0;
+	int laco = 1;
+	
+	  for (laco = 1; laco = 1;){
+	  	  system("cls");  // Limpa a tela
+		  setlocale(LC_ALL, "Portuguese"); //Linguagem
+		  printf("##Cartório EBAC ## \n\n ");
+		  printf("Escolha a opção desejada no menu: \n\n");
+	 	  printf("\t1- Registrar Nomes \n");
+	 	  printf("\t2- Consultar Nomes \n");
+	 	  printf("\t3- Deletar Nomes \n");
+	 	  printf("Opção: ");
+	
+	 	  //Armazene o valor que foi digitado
+	 	 scanf("%d", &opcao);
+	 	 
+	 	 system("cls"); //LIMPAR A TELA
+	 	 switch(opcao){
+	 	 	case 1:
+	 	 	registro(); //Chamada de funçao 
+	  	   	break;
+	  	   	case 2:
+		 	consulta();	 
+	  	   	break;
+	  	   	case 3:
+	 	 	deletar();
+	  	   	break;
+	  	   	default:
+	 	 	printf ("Esta opção não está disponivel\n");
+	 	 	system("pause");  
+	  	   	break;
+		  }
+	}
+}
